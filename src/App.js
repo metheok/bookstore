@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Routing from "./routes/Routing";
 import Header from "./components/Header/Header";

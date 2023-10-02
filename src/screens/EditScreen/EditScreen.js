@@ -1,6 +1,5 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
-import css from "./EditScreen.module.css";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,7 +8,7 @@ import {
   updateBook,
 } from "../../state/books/booksActions";
 import { clearErrors } from "../../state/books/booksSlice";
-export default function EditScreen({}) {
+export default function EditScreen() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.books);
   const navigate = useNavigate();

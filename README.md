@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Getting Started Book Store app
+
+In this app you can create, fetch and update a book.
+
+You need .env file to connect to DB cluster for testing or it will be connected to your local mongodb port.
 
 ## Available Scripts
 
@@ -6,12 +10,12 @@ In the project directory, you can run:
 
 ### `npm run dev`
 
-Runs the front-end on [http://localhost:3000](http://localhost:3000) and API on [http://localhost:8080](http://localhost:8080)
+Runs front-end on [http://localhost:3000](http://localhost:3000) and API on [http://localhost:8080](http://localhost:8080) concurrently
 
 API endpoints:
 
 1.  GET - http://localhost:8080/application-test-v1.1/books
-    Fetch all books with pagination, filter, sortBy
+    Fetch all books with pagination, filter, sortBy and search by name
 
 2.  POST http://localhost:8080/application-test-v1.1/books
     Create a new book - name, author and genre required
