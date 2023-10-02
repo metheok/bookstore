@@ -33,6 +33,24 @@ const validateBookData = (data) => {
 };
 
 class CompanyController {
+  fetchABook = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      if (!id) {
+        return res.status(400).json({ error: "Id is required" });
+      }
+      const book = await Book.findOne({ _id: id });
+      if (!book) {
+        return res.status(404).json({ error: "Book not found" });
+      }
+      res.json({
+        book,
+      });
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  };
   fetchBooks = async (req, res, next) => {
     try {
       const { category, page, limit, sortBy } = req.query;
