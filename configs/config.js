@@ -9,5 +9,4 @@ module.exports.Config = {
   DB_PASS: process.env.DB_PASS,
   DB_CLUSTERNAME: process.env.DB_CLUSTERNAME,
   DB_DATABASE: process.env.DB_DATABASE,
-  SECRET_JWT: process.env.SECRET_JWT,
 };

@@ -4,20 +4,25 @@
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs the front-end on [http://localhost:3000](http://localhost:3000) and API on [http://localhost:8080](http://localhost:8080)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+API endpoints:
+
+1.  GET - http://localhost:8080/application-test-v1.1/books
+    Fetch all books with pagination, filter, sortBy
+
+2.  POST http://localhost:8080/application-test-v1.1/books
+    Create a new book - name, author and genre required
+
+3.  PUT http://localhost:8080/application-test-v1.1/books/:id
+    Update existing book
+
+4.  GET http://localhost:8080/application-test-v1.1/books/:id
+    Fetch a book by id
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
+Builds the front-end app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.

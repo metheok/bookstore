@@ -44,7 +44,7 @@ class CompanyController {
         return res.status(404).json({ error: "Book not found" });
       }
       res.json({
-        book,
+        data: book,
       });
     } catch (e) {
       console.error(e);
@@ -53,17 +53,25 @@ class CompanyController {
   };
   fetchBooks = async (req, res, next) => {
     try {
-      const { category, page, limit, sortBy } = req.query;
-      const filter = category ? { category } : {};
-      const skip = page ? (parseInt(page) - 1) * parseInt(limit) : 0;
-      const sort = sortBy ? { [sortBy]: 1 } : {};
+      const { genre, page, sortBy, query } = req.query;
+      let filter = genre && genre !== "null" ? { genre } : {};
+      const skip =
+        page && page !== "null" ? (parseInt(page) - 1) * parseInt(10) : 0;
+      if (query && query !== "null") {
+        filter = { ...filter, name: { $regex: query, $options: "i" } };
+      }
+      const sort =
+        sortBy && sortBy !== "null" ? { [sortBy]: -1 } : { updatedAt: -1 };
+      const count = await Book.countDocuments(filter);
       const books = await Book.find(filter)
         .skip(skip)
-        .limit(parseInt(limit))
+        .limit(parseInt(10))
         .sort(sort);
+
       res.json({
-        books,
+        data: books,
         count: books.length,
+        totalPages: Math.ceil(count / parseInt(10)),
       });
     } catch (e) {
       console.error(e);
@@ -84,13 +92,13 @@ class CompanyController {
       // Create a new company
       const bookData = {
         ...validatedData,
-        updatedAt: new Date(),
+        createdAt: new Date(),
       };
       const book = new Book(bookData);
 
       await book.save();
       res.status(201).json({
-        book: {
+        data: {
           ...book.toJSON(),
         },
       });
@@ -127,7 +135,7 @@ class CompanyController {
       }
 
       res.status(201).json({
-        book: updatedBook,
+        data: updatedBook,
       });
     } catch (e) {
       console.error(e);
